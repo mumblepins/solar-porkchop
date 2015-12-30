@@ -10,7 +10,7 @@ distanceString = (d) ->
   if Math.abs(d) >= 1e9
     index = Math.log(d) // Math.log(10)
     pre = d / Math.pow(10, index)
-    pre.toString() + "e" + index.toString()
+    pre.toString() + "e" + index.toString() + " m"
   else
     numberWithCommas(d.toFixed()) + " m"
 
