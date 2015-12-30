@@ -6,8 +6,8 @@
   originSelect.empty()
   referenceBodySelect.empty()
   
-  # Add Kerbol to the reference body select box
-  $('<option>').text('Kerbol').appendTo(referenceBodySelect)
+  # Add Sun to the reference body select box
+  $('<option>').text('Sun').appendTo(referenceBodySelect)
   
   # Add other all known bodies to both select boxes
   listBody = (referenceBody, originGroup, referenceBodyGroup) ->
@@ -28,7 +28,7 @@
     else
       $('<option>').text(planet).appendTo(selectBox)
   
-  bodies = Object.keys(CelestialBody.Kerbol.children())
+  bodies = Object.keys(CelestialBody.Sun.children())
   bodies.sort((a,b) -> CelestialBody[a].orbit.semiMajorAxis - CelestialBody[b].orbit.semiMajorAxis)
   for name in bodies
     body = CelestialBody[name]
@@ -98,8 +98,8 @@ class MissionForm
     @form.bind 'reset', (event) =>
       setTimeout((=>
         if $('#earthTime').prop('checked') then $('#earthTime').click() else $('#kerbinTime').click()
-        @setOrigin('Kerbin')
-        @setDestination('Duna')
+        @setOrigin('Earth')
+        @setDestination('Mars')
       ), 0)
     @form.submit ((event) => event.preventDefault(); $(@).trigger('submit'))
         
