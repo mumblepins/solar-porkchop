@@ -46,7 +46,7 @@
       if (secs == null) {
         secs = 0;
       }
-      return new EarthTime(((((+years * this.daysPerYear) + +days + (Math.floor(+years / 4))) * this.hoursPerDay + +hours) * 60 + +mins) * 60 + +secs);
+      return new EarthTime(((((+years * this.daysPerYear) + +days + Math.ceil(+years / 4)) * this.hoursPerDay + +hours) * 60 + +mins) * 60 + +secs);
     };
 
     EarthTime.fromDate = function(year, day, hour, min, sec) {
@@ -93,8 +93,8 @@
       ref = this.hms(), hours = ref[0], mins = ref[1], secs = ref[2];
       days = (hours / EarthTime.hoursPerDay) | 0;
       hours = hours % EarthTime.hoursPerDay;
-      years = (days / EarthTime.daysPerYear) | 0;
-      days = days % EarthTime.daysPerYear;
+      years = (days / 365.25) | 0;
+      days = Math.floor(days % 365.25);
       return [years, days, hours, mins, secs];
     };
 
@@ -111,12 +111,7 @@
     EarthTime.prototype.toDateString = function() {
       var day, hour, min, ref, sec, year;
       ref = this.toDate(), year = ref[0], day = ref[1], hour = ref[2], min = ref[3], sec = ref[4];
-      if (year >= 1) {
-        return year + " CE, Day " + day + " at " + (EarthTime.hmsString(hour, min, Math.round(sec)));
-      } else {
-        year = 1 - year;
-        return year + " BCE, Day " + day + " at " + (EarthTime.hmsString(hour, min, Math.round(sec)));
-      }
+      return year + " CE, Day " + day + " at " + (EarthTime.hmsString(hour, min, Math.round(sec)));
     };
 
     EarthTime.prototype.toShortDateString = function(t) {

@@ -18,7 +18,7 @@ class EarthTime
     "#{hour}:#{min}:#{sec}"
   
   @fromDuration: (years = 0, days = 0, hours = 0, mins = 0, secs = 0) ->
-    new EarthTime(((((+years * @daysPerYear) + +days + (+years // 4)) * @hoursPerDay + +hours) * 60 + +mins) * 60 + +secs)
+    new EarthTime(((((+years * @daysPerYear) + +days + Math.ceil(+years / 4)) * @hoursPerDay + +hours) * 60 + +mins) * 60 + +secs)
   
   @fromDate: (year = 0, day = 0, hour = 0, min = 0, sec = 0) ->
     @fromDuration(+year - 1999, +day - 1, +hour, +min, +sec)
@@ -42,8 +42,8 @@ class EarthTime
     [hours, mins, secs] = @hms()
     days = (hours / EarthTime.hoursPerDay) | 0
     hours = hours % EarthTime.hoursPerDay
-    years = (days / EarthTime.daysPerYear) | 0
-    days = days % EarthTime.daysPerYear
+    years = (days / 365.25) | 0
+    days = Math.floor(days % 365.25)
     [years, days, hours, mins, secs]
   
   toDays: ->
@@ -55,11 +55,7 @@ class EarthTime
   
   toDateString: ->
     [year, day, hour, min, sec] = @toDate()
-    if year >= 1
-      "#{year} CE, Day #{day} at #{EarthTime.hmsString(hour, min, Math.round(sec))}"
-    else
-      year = 1 - year
-      "#{year} BCE, Day #{day} at #{EarthTime.hmsString(hour, min, Math.round(sec))}"
+    "#{year} CE, Day #{day} at #{EarthTime.hmsString(hour, min, Math.round(sec))}"
 
   toShortDateString: (t) ->
     [year, day, hour, min, sec] = @toDate()
