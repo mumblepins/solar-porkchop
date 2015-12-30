@@ -90,7 +90,7 @@
       } else {
         $('#bodyType a[href="#vesselFields"]', this.form).tab('show');
         $('#planetFields input', this.form).val('');
-        $('#timeOfPeriapsisPassage', this.form).val(new KerbalTime(orbit.timeOfPeriapsisPassage).toShortDateString());
+        $('#timeOfPeriapsisPassage', this.form).val(new EarthTime(orbit.timeOfPeriapsisPassage).toShortDateString());
       }
       $('.modal-header h4', this.form).text("Editing " + (body.name()));
       $('#bodyName', this.form).val(body.name()).data('originalValue', body.name());
@@ -125,7 +125,7 @@
         mass = +$('#planetMass').val();
         radius = +$('#planetRadius').val() * 1000;
       } else {
-        timeOfPeriapsisPassage = KerbalTime.parse($('#timeOfPeriapsisPassage').val()).t;
+        timeOfPeriapsisPassage = EarthTime.parse($('#timeOfPeriapsisPassage').val()).t;
       }
       orbit = new Orbit(referenceBody, semiMajorAxis, eccentricity, inclination, longitudeOfAscendingNode, argumentOfPeriapsis, meanAnomalyAtEpoch, timeOfPeriapsisPassage);
       if (originalName != null) {

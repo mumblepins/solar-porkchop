@@ -74,33 +74,28 @@
       });
       $('#earthTime').click((function(_this) {
         return function() {
-          return KerbalTime.setDateFormat(24, 365);
-        };
-      })(this));
-      $('#kerbinTime').click((function(_this) {
-        return function() {
-          return KerbalTime.setDateFormat(6, 426);
+          return EarthTime.setDateFormat(24, 365);
         };
       })(this));
       if ($('#earthTime').prop('checked')) {
         $('#earthTime').click();
       }
-      $(KerbalTime).on('dateFormatChanged', (function(_this) {
+      $(EarthTime).on('dateFormatChanged', (function(_this) {
         return function(event, oldHoursPerDay, oldDaysPerYear) {
           var departureDate, departureDates, i, len, newDate, oldHours, oldMaxHours, oldMinHours, timesOfFlight;
           departureDates = ['earliest', 'latest'];
           for (i = 0, len = departureDates.length; i < len; i++) {
             departureDate = departureDates[i];
             oldHours = ((+$("#" + departureDate + "DepartureYear").val() - 1) * oldDaysPerYear + (+$("#" + departureDate + "DepartureDay").val() - 1)) * oldHoursPerDay;
-            newDate = KerbalTime.fromDuration(0, 0, oldHours).toDate();
+            newDate = EarthTime.fromDuration(0, 0, oldHours).toDate();
             $("#" + departureDate + "DepartureYear").val(newDate[0]);
             $("#" + departureDate + "DepartureDay").val(newDate[1]);
           }
           timesOfFlight = ['shortest', 'longest'];
           oldMinHours = (+$("#shortestTimeOfFlight").val()) * oldHoursPerDay;
           oldMaxHours = (+$("#longestTimeOfFlight").val()) * oldHoursPerDay;
-          $("#shortestTimeOfFlight").val(+(oldMinHours / KerbalTime.hoursPerDay).toFixed(2));
-          return $("#longestTimeOfFlight").val(+(oldMaxHours / KerbalTime.hoursPerDay).toFixed(2));
+          $("#shortestTimeOfFlight").val(+(oldMinHours / EarthTime.hoursPerDay).toFixed(2));
+          return $("#longestTimeOfFlight").val(+(oldMaxHours / EarthTime.hoursPerDay).toFixed(2));
         };
       })(this));
       $('#originSelect').change((function(_this) {
@@ -113,8 +108,8 @@
           return _this.setDestination($(event.target).val());
         };
       })(this));
-      this.setOrigin('Kerbin');
-      this.setDestination('Duna');
+      this.setOrigin('Earth');
+      this.setDestination('Mars');
       $('#originAddBtn').click((function(_this) {
         return function(event) {
           return _this.celestialBodyForm.add(null, function(name) {
@@ -204,7 +199,7 @@
           $('#noInsertionBurnCheckbox').click();
         }
         $('#transferTypeSelect').val(params[6]);
-        $(params[7] === 'true' ? '#earthTime' : '#kerbalTime').click();
+        $(params[7] === 'true' ? '#earthTime' : '#EarthTime').click();
         $('#earliestDepartureYear').val(params[8]);
         $('#earliestDepartureDay').val(params[9]);
         return this.adjustLatestDeparture();
@@ -347,11 +342,11 @@
       } else {
         finalOrbitalVelocity = destination.circularOrbitVelocity(finalOrbit * 1e3);
       }
-      earliestDeparture = KerbalTime.fromDate(+$('#earliestDepartureYear').val(), +$('#earliestDepartureDay').val()).t;
-      latestDeparture = KerbalTime.fromDate(+$('#latestDepartureYear').val(), +$('#latestDepartureDay').val()).t;
+      earliestDeparture = EarthTime.fromDate(+$('#earliestDepartureYear').val(), +$('#earliestDepartureDay').val()).t;
+      latestDeparture = EarthTime.fromDate(+$('#latestDepartureYear').val(), +$('#latestDepartureDay').val()).t;
       xScale = latestDeparture - earliestDeparture;
-      shortestTimeOfFlight = KerbalTime.fromDuration(0, +$('#shortestTimeOfFlight').val()).t;
-      yScale = KerbalTime.fromDuration(0, +$('#longestTimeOfFlight').val()).t - shortestTimeOfFlight;
+      shortestTimeOfFlight = EarthTime.fromDuration(0, +$('#shortestTimeOfFlight').val()).t;
+      yScale = EarthTime.fromDuration(0, +$('#longestTimeOfFlight').val()).t - shortestTimeOfFlight;
       params = [$('#originSelect').val(), initialOrbit, $('#destinationSelect').val(), finalOrbit, noInsertionBurn, transferType, $('#earthTime').is(':checked'), $('#earliestDepartureYear').val(), $('#earliestDepartureDay').val()];
       location.hash = '#/' + params.join('/');
       return mission = {
@@ -375,7 +370,7 @@
       hohmannTransfer = Orbit.fromApoapsisAndPeriapsis(referenceBody, destination.orbit.semiMajorAxis, origin.orbit.semiMajorAxis, 0, 0, 0, 0);
       hohmannTransferTime = hohmannTransfer.period() / 2;
       synodicPeriod = Math.abs(1 / (1 / destination.orbit.period() - 1 / origin.orbit.period()));
-      departureRange = Math.min(2 * synodicPeriod, 2 * origin.orbit.period()) / KerbalTime.secondsPerDay();
+      departureRange = Math.min(2 * synodicPeriod, 2 * origin.orbit.period()) / EarthTime.secondsPerDay();
       if (departureRange < 0.1) {
         departureRange = +departureRange.toFixed(2);
       } else if (departureRange < 1) {
@@ -383,14 +378,14 @@
       } else {
         departureRange = +departureRange.toFixed();
       }
-      minDeparture = KerbalTime.fromDate($('#earliestDepartureYear').val(), $('#earliestDepartureDay').val()).t / KerbalTime.secondsPerDay();
+      minDeparture = EarthTime.fromDate($('#earliestDepartureYear').val(), $('#earliestDepartureDay').val()).t / EarthTime.secondsPerDay();
       maxDeparture = minDeparture + departureRange;
-      minDays = Math.max(hohmannTransferTime - destination.orbit.period(), hohmannTransferTime / 2) / KerbalTime.secondsPerDay();
-      maxDays = minDays + Math.min(2 * destination.orbit.period(), hohmannTransferTime) / KerbalTime.secondsPerDay();
+      minDays = Math.max(hohmannTransferTime - destination.orbit.period(), hohmannTransferTime / 2) / EarthTime.secondsPerDay();
+      maxDays = minDays + Math.min(2 * destination.orbit.period(), hohmannTransferTime) / EarthTime.secondsPerDay();
       minDays = minDays < 10 ? minDays.toFixed(2) : minDays.toFixed();
       maxDays = maxDays < 10 ? maxDays.toFixed(2) : maxDays.toFixed();
-      $('#latestDepartureYear').val((maxDeparture / KerbalTime.daysPerYear | 0) + 1);
-      $('#latestDepartureDay').val((maxDeparture % KerbalTime.daysPerYear) + 1);
+      $('#latestDepartureYear').val((maxDeparture / EarthTime.daysPerYear | 0) + 1);
+      $('#latestDepartureDay').val((maxDeparture % EarthTime.daysPerYear) + 1);
       $('#shortestTimeOfFlight').val(minDays);
       $('#longestTimeOfFlight').val(maxDays);
       if (destination.mass != null) {

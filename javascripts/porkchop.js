@@ -66,13 +66,13 @@
     selectedTransfer = transfer;
     originOrbit = mission.originBody.orbit;
     destinationOrbit = mission.destinationBody.orbit;
-    $('#departureTime').text(new KerbalTime(t0).toDateString()).attr({
+    $('#departureTime').text(new EarthTime(t0).toDateString()).attr({
       title: "UT: " + (t0.toFixed()) + "s"
     });
-    $('#arrivalTime').text(new KerbalTime(t1).toDateString()).attr({
+    $('#arrivalTime').text(new EarthTime(t1).toDateString()).attr({
       title: "UT: " + (t1.toFixed()) + "s"
     });
-    $('#timeOfFlight').text(new KerbalTime(dt).toDurationString()).attr({
+    $('#timeOfFlight').text(new EarthTime(dt).toDurationString()).attr({
       title: dt.toFixed() + "s"
     });
     $('#phaseAngle').text(angleString(originOrbit.phaseAngle(destinationOrbit, t0), 2));
@@ -99,7 +99,7 @@
     if (transfer.planeChangeTime != null) {
       $('.ballisticTransfer').hide();
       $('.planeChangeTransfer').show();
-      $('#planeChangeTime').text(new KerbalTime(transfer.planeChangeTime).toDateString()).attr({
+      $('#planeChangeTime').text(new EarthTime(transfer.planeChangeTime).toDateString()).attr({
         title: "UT: " + (transfer.planeChangeTime.toFixed()) + "s"
       });
       $('#planeChangeAngleToIntercept').text(angleString(transfer.planeChangeAngleToIntercept, 2));
@@ -150,7 +150,7 @@
     celestialBodyForm = new CelestialBodyForm($('#bodyForm'));
     missionForm = new MissionForm($('#porkchopForm'), celestialBodyForm);
     porkchopPlot = new PorkchopPlot($('#porkchopContainer'));
-    $(KerbalTime).on('dateFormatChanged', function(event) {
+    $(EarthTime).on('dateFormatChanged', function(event) {
       if (porkchopPlot.selectedPoint != null) {
         return showTransferDetailsForPoint(porkchopPlot.selectedPoint);
       }

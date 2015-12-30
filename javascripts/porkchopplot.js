@@ -54,7 +54,7 @@
           return workerMessage.call(_this, event);
         };
       })(this);
-      $(KerbalTime).on('dateFormatChanged', (function(_this) {
+      $(EarthTime).on('dateFormatChanged', (function(_this) {
         return function(event) {
           if (_this.mission != null) {
             return _this.drawAxisLabels();
@@ -320,11 +320,11 @@
         if (i === 1.0) {
           ctx.textBaseline = 'top';
         }
-        ctx.fillText(((this.mission.shortestTimeOfFlight + i * this.mission.yScale) / KerbalTime.secondsPerDay()) | 0, PLOT_X_OFFSET - TIC_LENGTH - 3, (1.0 - i) * PLOT_HEIGHT);
+        ctx.fillText(((this.mission.shortestTimeOfFlight + i * this.mission.yScale) / EarthTime.secondsPerDay()) | 0, PLOT_X_OFFSET - TIC_LENGTH - 3, (1.0 - i) * PLOT_HEIGHT);
       }
       ctx.textAlign = 'center';
       for (i = q = 0; q <= 1.0; i = q += 0.25) {
-        ctx.fillText(((this.mission.earliestDeparture + i * this.mission.xScale) / KerbalTime.secondsPerDay()) | 0, PLOT_X_OFFSET + i * PLOT_WIDTH, PLOT_HEIGHT + TIC_LENGTH + 3);
+        ctx.fillText(((this.mission.earliestDeparture + i * this.mission.xScale) / EarthTime.secondsPerDay()) | 0, PLOT_X_OFFSET + i * PLOT_WIDTH, PLOT_HEIGHT + TIC_LENGTH + 3);
       }
       return ctx.restore();
     };
