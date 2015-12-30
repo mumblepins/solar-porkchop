@@ -15,16 +15,15 @@
   };
 
   numberWithCommas = function(n) {
-    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   };
 
   distanceString = function(d) {
-    if (Math.abs(d) > 1e12) {
-      return numberWithCommas((d / 1e9).toFixed()) + " Gm";
-    } else if (Math.abs(d) >= 1e9) {
-      return numberWithCommas((d / 1e6).toFixed()) + " Mm";
-    } else if (Math.abs(d) >= 1e6) {
-      return numberWithCommas((d / 1e3).toFixed()) + " km";
+    var index, pre;
+    if (Math.abs(d) >= 1e9) {
+      index = Math.floor(Math.log(d) / Math.log(10));
+      pre = d / Math.pow(10, index);
+      return pre.toString() + "e" + index.toString();
     } else {
       return numberWithCommas(d.toFixed()) + " m";
     }

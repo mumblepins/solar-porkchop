@@ -105,13 +105,18 @@
     EarthTime.prototype.toDate = function() {
       var days, hours, mins, ref, secs, years;
       ref = this.ydhms(), years = ref[0], days = ref[1], hours = ref[2], mins = ref[3], secs = ref[4];
-      return [years + 1, days + 1, hours, mins, secs];
+      return [years + 1999, days + 1, hours, mins, secs];
     };
 
     EarthTime.prototype.toDateString = function() {
       var day, hour, min, ref, sec, year;
       ref = this.toDate(), year = ref[0], day = ref[1], hour = ref[2], min = ref[3], sec = ref[4];
-      return "Year " + year + ", day " + day + " at " + (EarthTime.hmsString(hour, min, Math.round(sec)));
+      if (year >= 1) {
+        return year + " CE, Day " + day + " at " + (EarthTime.hmsString(hour, min, Math.round(sec)));
+      } else {
+        year = 1 - year;
+        return year + " BCE, Day " + day + " at " + (EarthTime.hmsString(hour, min, Math.round(sec)));
+      }
     };
 
     EarthTime.prototype.toShortDateString = function(t) {

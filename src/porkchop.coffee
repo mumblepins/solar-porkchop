@@ -4,15 +4,13 @@ selectedTransfer = null
 sign = (x) -> if x < 0 then -1 else 1
 
 numberWithCommas = (n) ->
-  n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 
 distanceString = (d) ->
-  if Math.abs(d) > 1e12
-    numberWithCommas((d / 1e9).toFixed()) + " Gm"
-  else if Math.abs(d) >= 1e9
-    numberWithCommas((d / 1e6).toFixed()) + " Mm"
-  else if Math.abs(d) >= 1e6
-    numberWithCommas((d / 1e3).toFixed()) + " km"
+  if Math.abs(d) >= 1e9
+    index = Math.log(d) // Math.log(10)
+    pre = d / Math.pow(10, index)
+    pre.toString() + "e" + index.toString()
   else
     numberWithCommas(d.toFixed()) + " m"
 

@@ -51,11 +51,15 @@ class EarthTime
     
   toDate: ->
     [years, days, hours, mins, secs] = @ydhms()
-    [years + 1, days + 1, hours, mins, secs]
+    [years + 1999, days + 1, hours, mins, secs]
   
   toDateString: ->
     [year, day, hour, min, sec] = @toDate()
-    "Year #{year}, day #{day} at #{EarthTime.hmsString(hour, min, Math.round(sec))}"
+    if year >= 1
+      "#{year} CE, Day #{day} at #{EarthTime.hmsString(hour, min, Math.round(sec))}"
+    else
+      year = 1 - year
+      "#{year} BCE, Day #{day} at #{EarthTime.hmsString(hour, min, Math.round(sec))}"
 
   toShortDateString: (t) ->
     [year, day, hour, min, sec] = @toDate()
