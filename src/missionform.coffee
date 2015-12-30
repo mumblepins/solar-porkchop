@@ -72,7 +72,7 @@ class MissionForm
     $('#originSelect').change (event) => @setOrigin($(event.target).val())
     $('#destinationSelect').change (event) => @setDestination($(event.target).val())
     @setOrigin('Earth')
-    @setDestination('Mars')
+    @setDestination('The_Moon')
     
     $('#originAddBtn').click (event) => @celestialBodyForm.add(null, (name) => @originBodyChanged(name))
     $('#originEditBtn').click (event) =>

@@ -109,7 +109,7 @@
         };
       })(this));
       this.setOrigin('Earth');
-      this.setDestination('Mars');
+      this.setDestination('The_Moon');
       $('#originAddBtn').click((function(_this) {
         return function(event) {
           return _this.celestialBodyForm.add(null, function(name) {

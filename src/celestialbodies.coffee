@@ -32,7 +32,7 @@ CelestialBody.Mercury = Mercury = new CelestialBody(3.30104e23, 2.4397e06, 50670
 CelestialBody.Venus = Venus = new CelestialBody(4.86732e24, 6.0519e06, 2.09968e7, new Orbit(Sun, 1.0820893e08, 6.77323e-3, 3.39471, 76.68069, 54.85229, 0.8613), 89, 15900)
 
 CelestialBody.Earth = Earth = new CelestialBody(5.97237e24, 6.371e06, 86141.1, new Orbit(Sun, 1.49597887e11, 0.01671022, 5e-5, 348.73936, 114.20783, 6.245), 1, 8500)
-CelestialBody.Moon = Moon = new CelestialBody(7.3459e22, 1.7375e06, 236060, new Orbit(Earth, 3.844e8, 0.0554, 5.16, 125.08, 318.15, 2.105))
+CelestialBody.The_Moon = The_Moon = new CelestialBody(7.3459e22, 1.7375e06, 236060, new Orbit(Earth, 3.844e8, 0.0554, 5.16, 125.08, 318.15, 2.105))
 
 CelestialBody.Mars = Mars = new CelestialBody(6.41693e23, 3.386e06, 88642.7, new Orbit(Sun, 2.27936637e11, 0.09341233, 1.85061, 49.57854, 286.4623, 0.3334), 0.0063, 11100)
 CelestialBody.Phobos = Phobos = new CelestialBody(1.072e16, 1.11e04, 27600, new Orbit(Mars, 9.376e6, 0.0151, 1.093, 164.931, 150.247, 3.14))
