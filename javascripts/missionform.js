@@ -5,7 +5,7 @@
   (typeof exports !== "undefined" && exports !== null ? exports : this).prepareOrigins = prepareOrigins = function(selectedOrigin) {
     var addPlanetGroup, bodies, body, i, len, listBody, name, originGroup, originSelect, referenceBodyGroup, referenceBodySelect;
     if (selectedOrigin == null) {
-      selectedOrigin = 'Kerbin';
+      selectedOrigin = 'Earth';
     }
     originSelect = $('#originSelect');
     referenceBodySelect = $('#referenceBodySelect');
@@ -109,7 +109,7 @@
         };
       })(this));
       this.setOrigin('Earth');
-      this.setDestination('The_Moon');
+      this.setDestination('Moon');
       $('#originAddBtn').click((function(_this) {
         return function(event) {
           return _this.celestialBodyForm.add(null, function(name) {

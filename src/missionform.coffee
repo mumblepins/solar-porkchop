@@ -1,4 +1,4 @@
-(exports ? this).prepareOrigins = prepareOrigins = (selectedOrigin = 'Kerbin') ->
+(exports ? this).prepareOrigins = prepareOrigins = (selectedOrigin = 'Earth') ->
   originSelect = $('#originSelect')
   referenceBodySelect = $('#referenceBodySelect')
   
@@ -72,7 +72,7 @@ class MissionForm
     $('#originSelect').change (event) => @setOrigin($(event.target).val())
     $('#destinationSelect').change (event) => @setDestination($(event.target).val())
     @setOrigin('Earth')
-    @setDestination('The_Moon')
+    @setDestination('Moon')
     
     $('#originAddBtn').click (event) => @celestialBodyForm.add(null, (name) => @originBodyChanged(name))
     $('#originEditBtn').click (event) =>
