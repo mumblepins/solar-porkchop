@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>KSP Launch Window Planner by alexmoon</title>
+    <title>Solar System Launch Window Planner</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -114,7 +114,7 @@
   <body>
     <div class="container">
       <header class="page-header">
-        <h1>Launch Window Planner <small>for Kerbal Space Program</small></h1>
+        <h1>Launch Window Planner <small>for the Solar System</small></h1>
       </header>
       <section>
         <div class="row">
@@ -127,14 +127,8 @@
                   <div class="col-sm-8 col-md-8">
                     <div class="radio">
                       <label>
-                        <input type="radio" name="dateFormat" id="kerbinTime" value="kerbin" checked>
-                        Kerbin Time (6h days, 426d years)
-                      </label>
-                    </div>
-                    <div class="radio">
-                      <label>
                         <input type="radio" name="dateFormat" id="earthTime" value="earth">
-                        Earth Time (24h days, 365d years)
+                        Julian Calendar (24h days, 365d years)
                       </label>
                     </div>
                   </div>
@@ -361,6 +355,7 @@
         <div class="row">
           <h4>Acknowledgements</h4>
           <ul>
+            <li>Alexmoon's amazing <a href="http://alexmoon.github.io/ksp">Launch Window Planner</a> which was adapted to make this.</li>
             <li>Olex's beautiful <a href="http://ksp.olex.biz">Interactive illustrated interplanetary guide and calculator</a> which inspired me to create this tool as a web page.</li>
             <li>Robert Braeunig's excellent <a href="http://www.braeunig.us/space/">Rocket and Space Technology</a> which provided most of the math powering these calculations.</li>
             <li>And of course <a href="https://kerbalspaceprogram.com">Kerbal Space Program</a> for motivating me to finally learn orbital mechanics.</li>
@@ -368,8 +363,7 @@
         </div>
       </section>
       <footer>
-        <a href="https://github.com/alexmoon/ksp"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Launch Window Planner</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/alexmoon/ksp" property="cc:attributionName" rel="cc:attributionURL">Alex Moon</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. Icons by <a href="http://glyphicons.com/">Glyphicons</a>.
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Launch Window Planner</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/Lhwhatever/solar-porkchop" property="cc:attributionName" rel="cc:attributionURL">Lhwhatever</a>, original by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/alexmoon/ksp" property="cc:attributionName" rel="cc:attributionURL">Alexmoon</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. Icons by <a href="http://glyphicons.com/">Glyphicons</a>.
       </footer>
     </div>
     <form id="bodyForm" class="form-horizontal modal fade" tabindex="-1" role="dialog">
@@ -515,13 +509,5 @@
         </div>
       </div>
     </form>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-41470020-1', 'alexmoon.github.io');
-      ga('send', 'pageview');
-    </script>
   </body>
 </html>
