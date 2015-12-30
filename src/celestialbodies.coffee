@@ -26,7 +26,11 @@ CelestialBody.fromJSON = (json) ->
   orbit = Orbit.fromJSON(json.orbit) if json.orbit?
   new CelestialBody(json.mass, json.radius, json.siderealRotation, orbit, json.atmPressure)
   
-CelestialBody.Kerbol = Kerbol = new CelestialBody(1.756567e+28, 2.616e+08, 432000, null)
+CelestialBody.Sun = Sun = new CelestialBody(1.988435e30, 6.955e08, 2164320, null)
+CelestialBody.Earth = Earth = new CelestialBody(5.97237e24, 6.371e06, 86141.1, new Orbit(Sun, 1.49597887e11, 0.01671022, 5e-5, 348.73936, 114.20783, 6.245), 1, 8500)
+CelestialBody.Mars = Mars = new CelestialBody(6.41693e23, 3.386e06, 88642.7, new Orbit(Sun, 2.27936637e11, 0.09341233, 1.85061, 49.57854, 286.4623, 0.3334), 0.0063, 11100)
+
+###
 CelestialBody.Moho = Moho = new CelestialBody(2.5263617e21, 250000, 1210000, new Orbit(Kerbol, 5263138304, 0.2, 7.0, 70.0, 15.0, 3.14))
 CelestialBody.Eve = Eve = new CelestialBody(1.2244127e23, 700000, 80500, new Orbit(Kerbol, 9832684544, 0.01, 2.1, 15.0, 0, 3.14), 5, 7000)
 CelestialBody.Gilly = Gilly = new CelestialBody(1.2420512e17, 13000, 28255, new Orbit(Eve, 31500000, 0.55, 12.0, 80.0, 10.0, 0.9))
@@ -43,3 +47,4 @@ CelestialBody.Tylo = Tylo = new CelestialBody(4.2332635e22, 600000, 211926.36, n
 CelestialBody.Bop = Bop = new CelestialBody(3.7261536e19, 65000, 544507.4, new Orbit(Jool, 128500000, 0.235, 15.0, 10.0, 25.0, 0.9))
 CelestialBody.Pol = Pol = new CelestialBody(1.0813636e19, 44000, 901902.62, new Orbit(Jool, 179890000, 0.17085, 4.25, 2.0, 15.0, 0.9))
 CelestialBody.Eeloo = Eeloo = new CelestialBody(1.1149358e21, 210000, 19460,new Orbit(Kerbol, 90118820000, 0.26, 6.15, 50.0, 260.0, 3.14))
+###
