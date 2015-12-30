@@ -74,7 +74,7 @@
   CelestialBody.Sun = Sun = new CelestialBody(1.988435e30, 6.955e08, 2164320, null);
 
   CelestialBody.Earth = Earth = new CelestialBody(5.97237e24, 6.371e06, 86141.1, new Orbit(Sun, 1.49597887e11, 0.01671022, 5e-5, 348.73936, 114.20783, 6.245), 1, 8500);
-
+  
   CelestialBody.Mars = Mars = new CelestialBody(6.41693e23, 3.386e06, 88642.7, new Orbit(Sun, 2.27936637e11, 0.09341233, 1.85061, 49.57854, 286.4623, 0.3334), 0.0063, 11100);
 
 

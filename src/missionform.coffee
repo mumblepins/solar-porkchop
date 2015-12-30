@@ -52,28 +52,27 @@ class MissionForm
     
     $('.altitude').tooltip(container: 'body')
     
-    $('#earthTime').click => KerbalTime.setDateFormat(24, 365)
-    $('#kerbinTime').click => KerbalTime.setDateFormat(6, 426)
+    $('#earthTime').click => EarthTime.setDateFormat(24, 365)
     $('#earthTime').click() if $('#earthTime').prop('checked')
     
-    $(KerbalTime).on 'dateFormatChanged', (event, oldHoursPerDay, oldDaysPerYear) =>
+    $(EarthTime).on 'dateFormatChanged', (event, oldHoursPerDay, oldDaysPerYear) =>
       departureDates = ['earliest', 'latest']
       for departureDate in departureDates
         oldHours = ((+$("##{departureDate}DepartureYear").val() - 1) * oldDaysPerYear + (+$("##{departureDate}DepartureDay").val() - 1)) * oldHoursPerDay
-        newDate = KerbalTime.fromDuration(0, 0, oldHours).toDate()
+        newDate = EarthTime.fromDuration(0, 0, oldHours).toDate()
         $("##{departureDate}DepartureYear").val(newDate[0])
         $("##{departureDate}DepartureDay").val(newDate[1])
       
       timesOfFlight = ['shortest', 'longest']
       oldMinHours = (+$("#shortestTimeOfFlight").val()) * oldHoursPerDay
       oldMaxHours = (+$("#longestTimeOfFlight").val()) * oldHoursPerDay
-      $("#shortestTimeOfFlight").val(+(oldMinHours / KerbalTime.hoursPerDay).toFixed(2))
-      $("#longestTimeOfFlight").val(+(oldMaxHours / KerbalTime.hoursPerDay).toFixed(2))
+      $("#shortestTimeOfFlight").val(+(oldMinHours / EarthTime.hoursPerDay).toFixed(2))
+      $("#longestTimeOfFlight").val(+(oldMaxHours / EarthTime.hoursPerDay).toFixed(2))
     
     $('#originSelect').change (event) => @setOrigin($(event.target).val())
     $('#destinationSelect').change (event) => @setDestination($(event.target).val())
-    @setOrigin('Kerbin')
-    @setDestination('Duna')
+    @setOrigin('Earth')
+    @setDestination('Mars')
     
     $('#originAddBtn').click (event) => @celestialBodyForm.add(null, (name) => @originBodyChanged(name))
     $('#originEditBtn').click (event) =>
@@ -116,7 +115,7 @@ class MissionForm
       if (params[5] == 'true') != $('#noInsertionBurnCheckbox').is(':checked')
         $('#noInsertionBurnCheckbox').click()
       $('#transferTypeSelect').val(params[6])
-      $(if params[7] == 'true' then '#earthTime' else '#kerbalTime').click()
+      $(if params[7] == 'true' then '#earthTime' else '#EarthTime').click()
       $('#earliestDepartureYear').val(params[8])
       $('#earliestDepartureDay').val(params[9])
       @adjustLatestDeparture()
@@ -224,12 +223,12 @@ class MissionForm
     else
       finalOrbitalVelocity = destination.circularOrbitVelocity(finalOrbit * 1e3)
     
-    earliestDeparture = KerbalTime.fromDate(+$('#earliestDepartureYear').val(), +$('#earliestDepartureDay').val()).t
-    latestDeparture = KerbalTime.fromDate(+$('#latestDepartureYear').val(), +$('#latestDepartureDay').val()).t
+    earliestDeparture = EarthTime.fromDate(+$('#earliestDepartureYear').val(), +$('#earliestDepartureDay').val()).t
+    latestDeparture = EarthTime.fromDate(+$('#latestDepartureYear').val(), +$('#latestDepartureDay').val()).t
     xScale = latestDeparture - earliestDeparture
     
-    shortestTimeOfFlight = KerbalTime.fromDuration(0, +$('#shortestTimeOfFlight').val()).t
-    yScale = KerbalTime.fromDuration(0, +$('#longestTimeOfFlight').val()).t - shortestTimeOfFlight
+    shortestTimeOfFlight = EarthTime.fromDuration(0, +$('#shortestTimeOfFlight').val()).t
+    yScale = EarthTime.fromDuration(0, +$('#longestTimeOfFlight').val()).t - shortestTimeOfFlight
 
     # build url from mission parameters
     params = [$('#originSelect').val(), initialOrbit, $('#destinationSelect').val(), finalOrbit, noInsertionBurn, transferType, $('#earthTime').is(':checked'), $('#earliestDepartureYear').val(), $('#earliestDepartureDay').val()]
@@ -256,23 +255,23 @@ class MissionForm
     hohmannTransferTime = hohmannTransfer.period() / 2
     synodicPeriod = Math.abs(1 / (1 / destination.orbit.period() - 1 / origin.orbit.period()))
   
-    departureRange = Math.min(2 * synodicPeriod, 2 * origin.orbit.period()) / KerbalTime.secondsPerDay()
+    departureRange = Math.min(2 * synodicPeriod, 2 * origin.orbit.period()) / EarthTime.secondsPerDay()
     if departureRange < 0.1
       departureRange = +departureRange.toFixed(2)
     else if departureRange < 1
       departureRange = +departureRange.toFixed(1)
     else
       departureRange = +departureRange.toFixed()
-    minDeparture = KerbalTime.fromDate($('#earliestDepartureYear').val(), $('#earliestDepartureDay').val()).t / KerbalTime.secondsPerDay()
+    minDeparture = EarthTime.fromDate($('#earliestDepartureYear').val(), $('#earliestDepartureDay').val()).t / EarthTime.secondsPerDay()
     maxDeparture = minDeparture + departureRange
   
-    minDays = Math.max(hohmannTransferTime - destination.orbit.period(), hohmannTransferTime / 2) / KerbalTime.secondsPerDay()
-    maxDays = minDays + Math.min(2 * destination.orbit.period(), hohmannTransferTime) / KerbalTime.secondsPerDay()
+    minDays = Math.max(hohmannTransferTime - destination.orbit.period(), hohmannTransferTime / 2) / EarthTime.secondsPerDay()
+    maxDays = minDays + Math.min(2 * destination.orbit.period(), hohmannTransferTime) / EarthTime.secondsPerDay()
     minDays = if minDays < 10 then minDays.toFixed(2) else minDays.toFixed()
     maxDays = if maxDays < 10 then maxDays.toFixed(2) else maxDays.toFixed()
   
-    $('#latestDepartureYear').val((maxDeparture / KerbalTime.daysPerYear | 0) + 1)
-    $('#latestDepartureDay').val((maxDeparture % KerbalTime.daysPerYear) + 1)
+    $('#latestDepartureYear').val((maxDeparture / EarthTime.daysPerYear | 0) + 1)
+    $('#latestDepartureDay').val((maxDeparture % EarthTime.daysPerYear) + 1)
     $('#shortestTimeOfFlight').val(minDays)
     $('#longestTimeOfFlight').val(maxDays)
   

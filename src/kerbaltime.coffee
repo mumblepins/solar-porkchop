@@ -1,7 +1,7 @@
-class KerbalTime
-  # Default to Kerbin time
-  @hoursPerDay: 6
-  @daysPerYear: 426
+class EarthTime
+  # Default to Earth time
+  @hoursPerDay: 24
+  @daysPerYear: 365
   
   @setDateFormat: (newHoursPerDay, newDaysPerYear) ->
     oldHoursPerDay = @hoursPerDay
@@ -18,10 +18,10 @@ class KerbalTime
     "#{hour}:#{min}:#{sec}"
   
   @fromDuration: (years = 0, days = 0, hours = 0, mins = 0, secs = 0) ->
-    new KerbalTime(((((+years * @daysPerYear) + +days) * @hoursPerDay + +hours) * 60 + +mins) * 60 + +secs)
+    new EarthTime(((((+years * @daysPerYear) + +days + (+years // 4)) * @hoursPerDay + +hours) * 60 + +mins) * 60 + +secs)
   
   @fromDate: (year = 0, day = 0, hour = 0, min = 0, sec = 0) ->
-    @fromDuration(+year - 1, +day - 1, +hour, +min, +sec)
+    @fromDuration(+year - 1999, +day - 1, +hour, +min, +sec)
   
   @parse: (dateString) ->
     components = dateString.match(/(\d+)\/(\d+)\s+(\d+):(\d+):(\d+)/)
@@ -29,7 +29,7 @@ class KerbalTime
     @fromDate(components...)
 
   constructor: (t) ->
-    @t = if t.constructor == KerbalTime then t.t else t
+    @t = if t.constructor == EarthTime then t.t else t
   
   hms: ->
     hours = (@t / 3600) | 0
@@ -40,14 +40,14 @@ class KerbalTime
   
   ydhms: ->
     [hours, mins, secs] = @hms()
-    days = (hours / KerbalTime.hoursPerDay) | 0
-    hours = hours % KerbalTime.hoursPerDay
-    years = (days / KerbalTime.daysPerYear) | 0
-    days = days % KerbalTime.daysPerYear
+    days = (hours / EarthTime.hoursPerDay) | 0
+    hours = hours % EarthTime.hoursPerDay
+    years = (days / EarthTime.daysPerYear) | 0
+    days = days % EarthTime.daysPerYear
     [years, days, hours, mins, secs]
   
   toDays: ->
-    @t / KerbalTime.secondsPerDay()
+    @t / EarthTime.secondsPerDay()
     
   toDate: ->
     [years, days, hours, mins, secs] = @ydhms()
@@ -55,17 +55,17 @@ class KerbalTime
   
   toDateString: ->
     [year, day, hour, min, sec] = @toDate()
-    "Year #{year}, day #{day} at #{KerbalTime.hmsString(hour, min, Math.round(sec))}"
+    "Year #{year}, day #{day} at #{EarthTime.hmsString(hour, min, Math.round(sec))}"
 
   toShortDateString: (t) ->
     [year, day, hour, min, sec] = @toDate()
-    "#{year}/#{day} #{KerbalTime.hmsString(hour, min, Math.round(sec))}"
+    "#{year}/#{day} #{EarthTime.hmsString(hour, min, Math.round(sec))}"
 
   toDurationString: (t) ->
     [years, days, hours, mins, secs] = @ydhms()
     result = ""
     result += years + " years " if years > 0
     result += days + " days " if years > 0 or days > 0
-    result + KerbalTime.hmsString(hours, mins, Math.round(secs))
+    result + EarthTime.hmsString(hours, mins, Math.round(secs))
 
-(exports ? this).KerbalTime = KerbalTime
+(exports ? this).EarthTime = EarthTime

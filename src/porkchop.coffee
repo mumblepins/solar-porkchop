@@ -44,9 +44,9 @@ showTransferDetails = (transfer, t0, dt) ->
   originOrbit = mission.originBody.orbit
   destinationOrbit = mission.destinationBody.orbit
   
-  $('#departureTime').text(new KerbalTime(t0).toDateString()).attr(title: "UT: #{t0.toFixed()}s")
-  $('#arrivalTime').text(new KerbalTime(t1).toDateString()).attr(title: "UT: #{t1.toFixed()}s")
-  $('#timeOfFlight').text(new KerbalTime(dt).toDurationString()).attr(title: dt.toFixed() + "s")
+  $('#departureTime').text(new EarthTime(t0).toDateString()).attr(title: "UT: #{t0.toFixed()}s")
+  $('#arrivalTime').text(new EarthTime(t1).toDateString()).attr(title: "UT: #{t1.toFixed()}s")
+  $('#timeOfFlight').text(new EarthTime(dt).toDurationString()).attr(title: dt.toFixed() + "s")
   $('#phaseAngle').text(angleString(originOrbit.phaseAngle(destinationOrbit, t0), 2))
   if transfer.ejectionAngle?
     $('.ejectionAngle').show()
@@ -68,7 +68,7 @@ showTransferDetails = (transfer, t0, dt) ->
   if transfer.planeChangeTime?
     $('.ballisticTransfer').hide()
     $('.planeChangeTransfer').show()
-    $('#planeChangeTime').text(new KerbalTime(transfer.planeChangeTime).toDateString())
+    $('#planeChangeTime').text(new EarthTime(transfer.planeChangeTime).toDateString())
       .attr(title: "UT: #{transfer.planeChangeTime.toFixed()}s")
     $('#planeChangeAngleToIntercept').text(angleString(transfer.planeChangeAngleToIntercept, 2))
     $('#planeChangeAngle').text(angleString(transfer.planeChangeAngle, 2))
@@ -120,7 +120,7 @@ $(document).ready ->
   missionForm = new MissionForm($('#porkchopForm'), celestialBodyForm)
   porkchopPlot = new PorkchopPlot($('#porkchopContainer'))
   
-  $(KerbalTime).on 'dateFormatChanged', (event) ->
+  $(EarthTime).on 'dateFormatChanged', (event) ->
     showTransferDetailsForPoint(porkchopPlot.selectedPoint) if porkchopPlot.selectedPoint?
   
   $(missionForm)
