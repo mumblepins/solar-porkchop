@@ -23,7 +23,7 @@
     if (Math.abs(d) >= 1e9) {
       index = Math.floor(Math.log(d) / Math.log(10));
       pre = d / Math.pow(10, index);
-      return pre.toString() + "e" + index.toString();
+      return pre.toString() + "e" + index.toString() + " m";
     } else {
       return numberWithCommas(d.toFixed()) + " m";
     }

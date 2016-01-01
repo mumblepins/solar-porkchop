@@ -29,19 +29,36 @@ CelestialBody.fromJSON = (json) ->
 CelestialBody.Sun = Sun = new CelestialBody(1.988435e30, 6.955e08, 2164320, null)
 
 CelestialBody.Mercury = Mercury = new CelestialBody(3.30104e23, 2.4397e06, 5067030, new Orbit(Sun, 5.7909176e07, 0.20563069, 7.00487, 48.33167, 29.1248, 3.015))
-CelestialBody.Venus = Venus = new CelestialBody(4.86732e24, 6.0519e06, 2.09968e7, new Orbit(Sun, 1.0820893e08, 6.77323e-3, 3.39471, 76.68069, 54.85229, 0.8613), 89, 15900)
+CelestialBody.Venus = Venus = new CelestialBody(4.86732e24, 6.0519e06, 2.09968e07, new Orbit(Sun, 1.0820893e08, 6.77323e-3, 3.39471, 76.68069, 54.85229, 0.8613), 89, 15900)
 
 CelestialBody.Earth = Earth = new CelestialBody(5.97237e24, 6.371e06, 86141.1, new Orbit(Sun, 1.49597887e11, 0.01671022, 5e-5, 348.73936, 114.20783, 6.245), 1, 8500)
-CelestialBody.Moon = Moon = new CelestialBody(7.3459e22, 1.7375e06, 236060, new Orbit(Earth, 3.844e8, 0.0554, 5.16, 125.08, 318.15, 2.105))
+CelestialBody.Moon = Moon = new CelestialBody(7.3459e22, 1.7375e06, 236060, new Orbit(Earth, 3.844e08, 0.0554, 5.16, 125.08, 318.15, 2.105))
 
 CelestialBody.Mars = Mars = new CelestialBody(6.41693e23, 3.386e06, 88642.7, new Orbit(Sun, 2.27936637e11, 0.09341233, 1.85061, 49.57854, 286.4623, 0.3334), 0.0063, 11100)
-CelestialBody.Phobos = Phobos = new CelestialBody(1.072e16, 1.11e04, 27600, new Orbit(Mars, 9.376e6, 0.0151, 1.093, 164.931, 150.247, 3.14))
-CelestialBody.Deimos = Deimos = new CelestialBody(1.5e15, 6.2e03, 109000, new Orbit(Mars, 2.34632e7, 3.3e-4, 0.93, 339.6, 290.496, 3.14))
+CelestialBody.Phobos = Phobos = new CelestialBody(1.072e16, 1.11e04, 27600, new Orbit(Mars, 9.376e06, 0.0151, 1.093, 164.931, 150.247, 3.14))
+CelestialBody.Deimos = Deimos = new CelestialBody(1.5e15, 6.2e03, 109000, new Orbit(Mars, 2.34632e07, 3.3e-4, 0.93, 339.6, 290.496, 3.14))
 
-CelestialBody.Ceres = Ceres = new CelestialBody(9.47e20, 4.762e05, 32760, new Orbit(Sun, 4.13781191e11, 0.0797602, 10.58671, 80.40696, 73.1507, 0.1175))
 CelestialBody.Vesta = Vesta = new CelestialBody(2.59e20, 2.65e05, 19230, new Orbit(Sun, 3.53343625e11, 0.089358, 7.1338, 103.9184, 150.1801, 5.942))
-CelestialBody.Pallas = Pallas = new CelestialBody(2.11e20, 2.66e05, 28128, new Orbit(Sun, 4.14635701e11, 0.2307588, 34.84183, 173.1358, 310.34482, 6.151))
-CelestialBody.Juno = Juno = new CelestialBody(2.67e19, 1.1696e05, 25960, new Orbit(Sun, 3.99109789e11, 0.2580232, 12.97037, 170.12, 247.84199, 4.197))
+CelestialBody.Ceres = Ceres = new CelestialBody(9.47e20, 4.762e05, 32760, new Orbit(Sun, 4.13781191e11, 0.0797602, 10.58671, 80.40696, 73.1507, 0.1175))
+
+CelestialBody.Jupiter = Jupiter = new CelestialBody(1.89813e27, 6.9173e07, 35730, new Orbit(Sun, 7.78412027e11, 0.048392660, 1.3053, 100.55615, -85.8023, 0.3466), 0.3, 27000)
+CelestialBody.Amalthea = Amalthea = new CelestialBody(2.07e18, 8.345e04, 43000, new Orbit(Jupiter, 1.814e08, 0.0032, 0.38, 108.946, 155.873, 3.14))
+CelestialBody.Io = Io = new CelestialBody(8.9298e22, 1.8216e06, 152800, new Orbit(Jupiter, 4.217e08, 0.0041, 0.036, 43.977, 84.129, 3.14))
+CelestialBody.Europa = Europa = new CelestialBody(4.7987e22, 1.5608e06, 306800, new Orbit(Jupiter, 6.711e08, 0.0094, 0.466, 219.106, 88.97, 3.14))
+CelestialBody.Ganymede = Ganymede = new CelestialBody(1.4815e23, 2.6312e06, 618200, new Orbit(Jupiter, 1.0704e09, 0.0013, 0.177, 63.522, 192.417, 3.14))
+CelestialBody.Callisto = Callisto = new CelestialBody(1.0757e23, 2.4103e06, 1.442e06, new Orbit(Jupiter, 1.8827e09, 0.0074, 0.192, 298.848, 52.643, 3.14))
+CelestialBody.Himalia = Himalia = new CelestialBody(6.7e18, 8.5e04, 35000, new Orbit(Jupiter, 1.1461e10, 0.1623, 27.496, 57.245, 331.995, 3.14))
+
+CelestialBody.Saturn = Saturn = new CelestialBody(5.68319e26, 5.7136e07, 38362, new Orbit(Sun, 1.42672541e12, 0.0541506, 2.48446, 113.71504, -21.2831, 338.7169, 5.532), 0.4, 59500)
+CelestialBody.Mimas = Mimas = new CelestialBody(3.791e19, 1.988e05, 81400, new Orbit(Saturn, 1.85540e08, 0.0196, 1.572, 153.152, 14.352, 3.14))
+CelestialBody.Enceladus = Enceladus = new CelestialBody(1.08e20, 2.523e05, 118400, new Orbit(Saturn, 2.3804e08, 0.0047, 0.009, 93.204, 211.923, 3.14))
+CelestialBody.Tethys = Tethys = new CelestialBody(6.175e20, 5.363e05, 163100, new Orbit(Saturn, 2.9467e08, 1e-4, 1.091, 330.882, 262.845, 3.14))
+CelestialBody.Dione = Dione = new CelestialBody(1.0955e21, 5.625e05, 236500, new Orbit(Saturn, 3.7742e08, 0.0022, 0.028, 168.909, 168.82, 3.14))
+CelestialBody.Rhea = Rhea = new CelestialBody(2.3084e21, 7.645e05, 390400, new Orbit(Saturn, 5.2707e08, 0.001, 0.331, 311.531, 256.609, 3.14))
+CelestialBody.Titan = Titan = new CelestialBody(1.3452e23, 2.5755e06, 1.378e06, new Orbit(Saturn, 1.22187e09, 0.0288, 0.28, 24.502, 185.671, 3.14), 1.41, 40000)
+CelestialBody.Hyperion = Hyperion = new CelestialBody(5.5e18, 1.33e05, 1.839e06, new Orbit(Saturn, 1.50088e09, 0.0274, 0.63, 264.022, 324.183, 3.14))
+CelestialBody.Iapetus = Iapetus = new CelestialBody(1.8055e21, 7.345e05, 6.845e06, new Orbit(Saturn, 3.56084e09, 0.0283, 7.489, 75.831, 275.921, 3.14))
+CelestialBody.Phoebe = Phoebe = new CelestialBody(8.287e18, 1.066e05, 35000, new Orbit(Saturn, 1.294778e10, 0.1635, 175.986, 241.57, 345.582, 3.14))
 
 ###
 CelestialBody.Moho = Moho = new CelestialBody(2.5263617e21, 250000, 1210000, new Orbit(Kerbol, 5263138304, 0.2, 7.0, 70.0, 15.0, 3.14))
