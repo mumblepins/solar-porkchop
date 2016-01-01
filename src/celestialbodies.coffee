@@ -56,9 +56,9 @@ CelestialBody.Tethys = Tethys = new CelestialBody(6.175e20, 5.363e05, 163100, ne
 CelestialBody.Dione = Dione = new CelestialBody(1.0955e21, 5.625e05, 236500, new Orbit(Saturn, 3.7742e08, 0.0022, 0.028, 168.909, 168.82, 3.14))
 CelestialBody.Rhea = Rhea = new CelestialBody(2.3084e21, 7.645e05, 390400, new Orbit(Saturn, 5.2707e08, 0.001, 0.331, 311.531, 256.609, 3.14))
 CelestialBody.Titan = Titan = new CelestialBody(1.3452e23, 2.5755e06, 1.378e06, new Orbit(Saturn, 1.22187e09, 0.0288, 0.28, 24.502, 185.671, 3.14), 1.41, 40000)
-# CelestialBody.Hyperion = Hyperion = new CelestialBody(5.5e18, 1.33e05, 1.839e06, new Orbit(Saturn, 1.50088e09, 0.0274, 0.63, 264.022, 324.183, 3.14))
+CelestialBody.Hyperion = Hyperion = new CelestialBody(5.5e18, 1.33e05, 1.839e06, new Orbit(Saturn, 1.50088e09, 0.0274, 0.63, 264.022, 324.183, 3.14))
 CelestialBody.Iapetus = Iapetus = new CelestialBody(1.8055e21, 7.345e05, 6.845e06, new Orbit(Saturn, 3.56084e09, 0.0283, 7.489, 75.831, 275.921, 3.14))
-# CelestialBody.Phoebe = Phoebe = new CelestialBody(8.287e18, 1.066e05, 35000, new Orbit(Saturn, 1.294778e10, 0.1635, 175.986, 241.57, 345.582, 3.14))  
+CelestialBody.Phoebe = Phoebe = new CelestialBody(8.287e18, 1.066e05, 35000, new Orbit(Saturn, 1.294778e10, 0.1635, 175.986, 241.57, 345.582, 3.14))  
 
 CelestialBody.Uranus = Uranus = new CelestialBody(8.68103e25, 2.5266e07, 62064, new Orbit(Sun, 2.87097222e12, 0.04176771, 0.76986, 74.22988, 96.73436, 2.462), 1.2, 27700)
 CelestialBody.Miranda = Miranda = new CelestialBody(6.6e19, 2.358e05, 122100, new Orbit(Uranus, 1.299e08, 0.0013, 4.338, 326.438, 68.312, 3.14))
